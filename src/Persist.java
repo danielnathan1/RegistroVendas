@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.ArrayList;
 
 
 public class Persist {
@@ -22,10 +23,12 @@ public class Persist {
 			fos.close();
 		} catch (FileNotFoundException e) {
 			
-			e.printStackTrace();
+			System.out.println("ERRO: Arquivo nao encontrado!");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}catch (NullPointerException e) {
+			System.out.println("ERRO: Objeto nao pode ser salvo NULO");
 		}
 	}
 	
@@ -55,6 +58,24 @@ public class Persist {
 			}	
 			
 		return null;
+	}
+	public void salvarVenda(Serializable serializable,String nome){
+		
+		
+		try {
+			
+			FileOutputStream fos = new FileOutputStream(nome);
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			oos.writeObject(serializable);
+			oos.close();
+			fos.close();
+		} catch (FileNotFoundException e) {
+			
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 }

@@ -6,26 +6,32 @@ import java.util.Scanner;
 
 public class Venda implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	public Produto produto = new Produto();
 	public ArrayList<Produto> produtos = new ArrayList<>();
 	public Vendedor vendedor;
-	float desconto;
-	int i =0;
-	int quantidadeItens;
-	int quantidadeItensFinal;
-	float valorComissaoFinal;
-	float valorFinal;
-	float valor;
-	float valorComissao;
+	public float desconto;
+	public int i =0;
+	public int quantidadeItens;
+	public int quantidadeItensFinal;
+	public float valorComissaoFinal;
+	public float valorFinal;
+	public float valor;
+	public float valorComissao;
 	
-	Persist persist = new Persist();
-	
-	Scanner leitor = new Scanner(System.in);
-	Scanner teste = new Scanner(System.in);
 	
 	
 	
 	public Venda registroVenda(Venda venda){
+		Persist persist = new Persist();
+		
+		Scanner leitor = new Scanner(System.in);
+		Scanner teste = new Scanner(System.in);
+	
 		int x=0;
 		System.out.println("\nDIGITE O ID DO VENDEDOR: ");
 		venda.setVendedor((Vendedor) persist.lerObjeto("vendedores/" + leitor.nextLine()));
@@ -48,12 +54,11 @@ public class Venda implements Serializable{
 			
 			System.out.println("\n\n\n[0] SE DESEJA ADICIONAR MAIS ALGUM PRODUTO, QUALQUER TECLA PARA SAIR: ");
 			x = teste.nextInt();
-			
 		}
 
 		return venda;
 	}
-public void efetuarDesconto(float porcentagem){
+	public void efetuarDesconto(float porcentagem){
 		
 		try{
 		desconto = (porcentagem / 100) * this.produto.getValorVenda();

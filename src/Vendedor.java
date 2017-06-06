@@ -3,6 +3,10 @@ import java.util.Scanner;
 
 public class Vendedor implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public String nome;
 	public String id;
 	public static float comissao = 10;

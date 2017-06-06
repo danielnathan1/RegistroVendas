@@ -1,5 +1,6 @@
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -18,26 +19,27 @@ public class UsandoVenda {
 		Venda venda = new Venda();
 		//
 		Scanner leitor = new Scanner(System.in);
-		
-		Scanner teste = new Scanner(System.in);
 		//
 		Persist persist = new Persist();
 		
 		
-		
-		while(menu.getOpcao()!=4 ){
-			menu.setOpcaoRetorno(2) ;
-			menu.limpar();
+	
+		while(menu.getOpcao()!= 4){
 			menu.menuPrincipal();
+			menu.setOpcaoRetorno(2) ;
+			//menu.limpar();
 			switch (menu.getOpcao()) {
 			case 1:
 				//EFETUAR VENDA
 				
 				while(menu.getOpcaoRetorno()== 2){
-	
+					
 					venda.registroVenda(venda);
 					venda.mostrarVenda(venda);
-					persist.salvar(venda, "vendas/"+ venda.getVendedor().getNome());
+					persist.salvar(venda, venda.getVendedor().getNome());
+					
+					//Venda venda2 = new Venda();
+					//venda2 = persist.lerObjeto("daniel");
 					menu.menuRetorno();
 				
 				}
@@ -45,9 +47,9 @@ public class UsandoVenda {
 				
 			case 2:
 				
-				//REGISTRO VENDEDOR
+				//controle de retorno ou saida
 				while(menu.getOpcaoRetorno()==2){
-					
+					//
 					menu.limpar();
 					vendedor.registrarVendedor(vendedor);
 					persist.salvar(vendedor, "vendedores/"+ vendedor.getId());
@@ -57,28 +59,48 @@ public class UsandoVenda {
 			
 				
 				break;
+			/*
+			 * Registra, Salva e Mostra um produto
+			 */
 			case 3:
-				
-				//REGISTRAR PRODUTO
+				//controle para o retorno  de menu
 				while(menu.getOpcaoRetorno()==2){
+					
+					//limpar a tela
+					menu.limpar();
+					//registrar o produto
 					produto.registrarProduto(produto);
+					//Salva o produto
 					persist.salvar(produto, "produtos/" + produto.getCodigo());
+					//mostra o produto salvo
 					produto.mostraProduto(produto);
+					//menu de saida ou retorno
 					menu.menuRetorno();
 					
 				}
 				
 				break;
+				
 			case 4:
-				System.exit(0);
-			default:
-				System.out.println("DIGITE UM VALOR VALIDO: ");
 				
 				break;
+				
+			//SAIR
+			case 5:
+				System.exit(0);
+				
+			default:
+				menu.setOpcao(0);
+				try{
+				System.out.println("DIGITE UM VALOR VALIDO:");
+				menu.opcao = leitor.nextInt();
+				}catch (InputMismatchException e) {
+					System.out.println("ERRO: Valor Informado Invalido");
+					System.out.println("O PROGRAMA SERA FINALIZADO");
+				}finally {
+					System.exit(0);
+				}
 			}
 		}
 	}
-	
-	
-	
 }
