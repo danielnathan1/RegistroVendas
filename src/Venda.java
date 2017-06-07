@@ -2,6 +2,7 @@ import java.awt.List;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Venda implements Serializable{
@@ -14,6 +15,7 @@ public class Venda implements Serializable{
 	public Produto produto = new Produto();
 	public ArrayList<Produto> produtos = new ArrayList<>();
 	public Vendedor vendedor;
+	public String horas;
 	public float desconto;
 	public int i =0;
 	public int quantidadeItens;
@@ -33,17 +35,25 @@ public class Venda implements Serializable{
 		Scanner teste = new Scanner(System.in);
 	
 		int x=0;
+		System.out.println("----------------------------------------------------------------------");
 		System.out.println("\nDIGITE O ID DO VENDEDOR: ");
 		venda.setVendedor((Vendedor) persist.lerObjeto("vendedores/" + leitor.nextLine()));
 		
 		
 		while(x==0){
 			
-		//valor final a se pagar
+		//valor final a se pagar	
 			System.out.println("\nDIGITE O CODIGO DO PRODUTO: ");
 			venda.produto = ((Produto) persist.lerObjeto("produtos/" + leitor.nextLine()));
 			System.out.println("\nDIGITE A QUANTIDADE DE ITENS:");
+			try{
 			venda.quantidadeItens = teste.nextInt();
+			}catch (InputMismatchException e) {
+				System.out.println("ERRO: O valor informado e invalido");
+			}
+			if(venda.quantidadeItens < 0){
+				venda.quantidadeItens *= -1;
+			}
 			venda.produtos.add(venda.getProduto());
 			venda.calcularValor();
 			venda.calcularComissao();
@@ -128,7 +138,7 @@ public class Venda implements Serializable{
 			
 		}
 		System.out.println("\nVALOR TOTAL: RS" + venda.valorFinal + "\tTOTAL DE ITENS: " + venda.quantidadeItensFinal);
-		System.out.println("\n\n\nVENDEDOR:"+ venda.vendedor.getNome() + "\t\tCOMISSAO: RS" + venda.valorComissaoFinal);
+		System.out.println("\n\n\nVENDEDOR:"+ venda.vendedor.getNome() + "\t\tCOMISSAO: RS" + venda.valorComissaoFinal + "\tHORA DA VENDA: " + venda.horas);
 		
 		
 		try { Thread.sleep (3000); } catch (InterruptedException ex) {}
@@ -201,6 +211,13 @@ public class Venda implements Serializable{
 	}
 	public void setQuantidadeItensFinal(int quantidadeItensFinal) {
 		this.quantidadeItensFinal = quantidadeItensFinal;
+	}
+	
+	public String getHoras() {
+		return horas;
+	}
+	public void setHoras(String horas) {
+		this.horas = horas;
 	}
 	
 	

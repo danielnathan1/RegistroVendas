@@ -14,7 +14,7 @@ public class Vendedor implements Serializable{
 	
 	public Vendedor registrarVendedor(Vendedor vendedor){
 		Scanner leitor = new Scanner(System.in);
-		System.out.println("------------------------------------------");
+		System.out.println("----------------------------------------------------------------------");
 		System.out.println("\t\tDADOS DO VENDEDOR\n");
 		System.out.println("\nNOME: ");
 		vendedor.setNome(leitor.nextLine());
@@ -27,7 +27,7 @@ public class Vendedor implements Serializable{
 	}
 	
 	public void mostrarVendedor(Vendedor vendedor){
-		System.out.println("------------------------------------------");
+		System.out.println("----------------------------------------------------------------------");
 		System.out.println("\n\t\tDADOS DO VENDEDOR REGISTRADO");
 		System.out.println("\nNOME: "+ vendedor.getNome());
 		System.out.println("\nID: " + vendedor.getId());

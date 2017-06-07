@@ -61,11 +61,11 @@ public class Produto implements Serializable {
 	}
 	
 	public void mostraProduto(Produto pro){
+		System.out.println("----------------------------------------------------------------------");
 		System.out.println("\n\t\tDADOS DO PRODUTO REGISTRADO");
-		System.out.println("\nNOME: "+ pro.getNome());
-		System.out.println("\nCODIGO:" + pro.getCodigo());
+		System.out.println("\n\nNOME: "+ pro.getNome() + "\t\tCODIGO: " + pro.getCodigo());
 		System.out.println("\nDESCRICAO:" + pro.getDescricao());
-		System.out.println("\nVALOR PARA VENDA: " + pro.getValorVenda());
+		System.out.println("\n\nVALOR PARA VENDA: " + pro.getValorVenda());
 		System.out.println("\nVALOR DO CUSTO: " + pro.getValorCusto());
 		System.out.println("\nPROMOCAO: ");
 		if(pro.getPromocao()== true)
@@ -73,7 +73,7 @@ public class Produto implements Serializable {
 		else
 			System.out.println("O produto nao esta em promocao");
 		
-		try { Thread.sleep (3000); } catch (InterruptedException ex) {}
+		try { Thread.sleep (1000); } catch (InterruptedException ex) {}
 		
 	}
 	

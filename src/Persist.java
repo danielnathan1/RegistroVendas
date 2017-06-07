@@ -47,8 +47,9 @@ public class Persist {
 			
 			
 		} catch (FileNotFoundException e) {
-			
-			e.printStackTrace();
+			System.out.println("ERRO: O Arquivo Nao foi Encontrado");
+			System.out.println("O PROGRAMA SERA ENCERRADO");
+			System.exit(0);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
