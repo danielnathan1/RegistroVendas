@@ -17,7 +17,7 @@ public class Menu {
 		System.out.println("\n[1]-EFETUAR VENDA");
 		System.out.println("\n[2]-REGISTRAR VENDEDOR");
 		System.out.println("\n[3]-REGISTRAR PRODUTO");
-		System.out.println("\n[4]-LSITAGEM");
+		System.out.println("\n[4]-LISTAGEM");
 		System.out.println("\n[5]-SAIR");
 		System.out.println("----------------------------------------------------------------------");
 		
