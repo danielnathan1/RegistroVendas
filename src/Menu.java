@@ -14,11 +14,11 @@ public class Menu {
 	public int menuPrincipal(){
 		System.out.println("----------------------------------------------------------------------");
 		System.out.println("\tBEM VINDO AO REGISTRO DE VENDA\n\n");
-		System.out.println("\n1-EFETUAR VENDA");
-		System.out.println("\n2-REGISTRAR VENDEDOR");
-		System.out.println("\n3-REGISTRAR PRODUTO");
-		System.out.println("\n4-LSITAGEM");
-		System.out.println("\n5-SAIR");
+		System.out.println("\n[1]-EFETUAR VENDA");
+		System.out.println("\n[2]-REGISTRAR VENDEDOR");
+		System.out.println("\n[3]-REGISTRAR PRODUTO");
+		System.out.println("\n[4]-LSITAGEM");
+		System.out.println("\n[5]-SAIR");
 		System.out.println("----------------------------------------------------------------------");
 		
 		try{
@@ -33,8 +33,8 @@ public class Menu {
 	
 	public int menuRetorno(){
 		System.out.println("----------------------------------------------------------------------");
-		System.out.println("1-VOLTAR AO MENU");
-		System.out.println("2-REGRISTAR NOVAMENTE");
+		System.out.println("[1]-VOLTAR AO MENU");
+		System.out.println("[2]-REGRISTAR NOVAMENTE");
 		System.out.println("\n4- SAIR");
 		
 		setOpcaoRetorno(leitor.nextInt());
@@ -55,10 +55,10 @@ public class Menu {
 		//opcao de listagem
 		System.out.println("----------------------------------------------------------------------");
 		System.out.println("\t\tMENU DE LISTAGEM");
-		System.out.println("\n1-MOSTRAR PRODUTO");
-		System.out.println("\n2-MOSTRA VENDEDOR");
-		System.out.println("\n3-MOSTRA VENDA");
-		System.out.println("\n\n4-SAIR");
+		System.out.println("\n[1]-MOSTRAR PRODUTO");
+		System.out.println("\n[2]-MOSTRA VENDEDOR");
+		System.out.println("\n[3]-MOSTRA VENDA");
+		System.out.println("\n\n[4]-SAIR");
 		
 		try{
 			setOpcaoListagem(leitor.nextInt());
@@ -76,9 +76,9 @@ public class Menu {
 	}
 	public int menuRetornoListagem(){
 		System.out.println("----------------------------------------------------------------------");
-		System.out.println("1-VOLTAR AO MENU");
-		System.out.println("2-LISTAR NOVAMENTE");
-		System.out.println("\n4- SAIR");
+		System.out.println("[1]-VOLTAR AO MENU");
+		System.out.println("[2}-LISTAR NOVAMENTE");
+		System.out.println("\n[4]- SAIR");
 		
 		setOpcaoRetorno(leitor.nextInt());
 		

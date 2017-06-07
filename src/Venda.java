@@ -45,11 +45,12 @@ public class Venda implements Serializable{
 		//valor final a se pagar	
 			System.out.println("\nDIGITE O CODIGO DO PRODUTO: ");
 			venda.produto = ((Produto) persist.lerObjeto("produtos/" + leitor.nextLine()));
-			System.out.println("\nDIGITE A QUANTIDADE DE ITENS:");
+			System.out.println("\nDIGITE A QUANTIDADE DE ITENS(no maximo 2147483647):");
 			try{
 			venda.quantidadeItens = teste.nextInt();
 			}catch (InputMismatchException e) {
-				System.out.println("ERRO: O valor informado e invalido");
+				System.out.println("ERRO: O valor informado e invalido\nO PROGRAMA SERA ENCERRADO");
+				System.exit(0);
 			}
 			if(venda.quantidadeItens < 0){
 				venda.quantidadeItens *= -1;
@@ -63,7 +64,12 @@ public class Venda implements Serializable{
 			venda.quantidadeItensFinal += venda.quantidadeItens;
 			
 			System.out.println("\n\n\n[0] SE DESEJA ADICIONAR MAIS ALGUM PRODUTO, QUALQUER TECLA PARA SAIR: ");
+			try{
 			x = teste.nextInt();
+			}catch (InputMismatchException e) {
+				System.out.println("ERRO: Valor informado Invalido\nO PROGRAMA SERA ENCERRADO");
+				System.exit(0);
+			}
 		}
 
 		return venda;
@@ -127,9 +133,10 @@ public class Venda implements Serializable{
 	public void mostrarVenda(Venda venda){
 		System.out.println("-------------------------------------------------------------------");
 		System.out.println("\tDETALHAMENTO DA VENDA");
+		i=0;
 		try{
 		do{
-			System.out.println("\nPRODUTO:" + produtos.get(i).getNome() + "  PRECO:RS" + produtos.get(i).getValorCusto());
+			System.out.println("\nPRODUTO:" + venda.produtos.get(i).getNome() + "  PRECO:RS" + venda.produtos.get(i).getValorCusto());
 			i++;
 		}while(venda.getProdutos().get(i) != null);
 		}catch (IndexOutOfBoundsException e) {
@@ -218,6 +225,12 @@ public class Venda implements Serializable{
 	}
 	public void setHoras(String horas) {
 		this.horas = horas;
+	}
+	public int getI() {
+		return i;
+	}
+	public void setI(int i) {
+		this.i = i;
 	}
 	
 	
