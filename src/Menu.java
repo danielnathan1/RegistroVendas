@@ -4,14 +4,15 @@ import java.util.Scanner;
 public class Menu {
 	
 	//variaveis de controle
-	public int opcao;
-	public int opcaoRetorno = 2;
-	public int opcaoListagem;
+	public String opcao;
+	public String opcaoRetorno = "2";
+	public String opcaoListagem;
+	public String opcaoListagemRetorno = "2";
 	//entrada de dados
 	Scanner leitor = new Scanner(System.in);
 	
 	//funcao de exibicao principal
-	public int menuPrincipal(){
+	public String menuPrincipal(){
 		System.out.println("----------------------------------------------------------------------");
 		System.out.println("\tBEM VINDO AO REGISTRO DE VENDA\n\n");
 		System.out.println("\n[1]-EFETUAR VENDA");
@@ -22,23 +23,23 @@ public class Menu {
 		System.out.println("----------------------------------------------------------------------");
 		
 		try{
-		setOpcao(leitor.nextInt());
+		setOpcao(leitor.nextLine());
 		}catch (InputMismatchException e) {
 			System.out.println("ERRO: valor informado incorreto");
-		}finally {
-			
 		}
 		return opcao;
 	}
 	
-	public int menuRetorno(){
+	public String menuRetorno(){
 		System.out.println("----------------------------------------------------------------------");
 		System.out.println("[1]-VOLTAR AO MENU");
 		System.out.println("[2]-REGRISTAR NOVAMENTE");
 		System.out.println("\n4- SAIR");
 		
-		setOpcaoRetorno(leitor.nextInt());
+		setOpcaoRetorno(leitor.nextLine());
 		
+		if(getOpcaoRetorno() == "4")
+			System.exit(0);
 		return opcaoRetorno;
 	}
 	
@@ -48,7 +49,7 @@ public class Menu {
 		System.out.println("\n\t\tVENDA DE PRODUTOS");
 	}
 	
-	public int menuListagem(){
+	public String menuListagem(){
 		//variaveis para exibicao incluindo objetos
 		
 		
@@ -61,7 +62,7 @@ public class Menu {
 		System.out.println("\n\n[4]-SAIR");
 		
 		try{
-			setOpcaoListagem(leitor.nextInt());
+			setOpcaoListagem(leitor.nextLine());
 			}catch (InputMismatchException e) {
 				System.out.println("ERRO: valor informado incorreto");
 			}finally {
@@ -74,48 +75,58 @@ public class Menu {
 		return opcaoListagem;
 		
 	}
-	public int menuRetornoListagem(){
+	public String menuRetornoListagem(){
 		System.out.println("----------------------------------------------------------------------");
 		System.out.println("[1]-VOLTAR AO MENU");
 		System.out.println("[2}-LISTAR NOVAMENTE");
 		System.out.println("\n[4]- SAIR");
 		
-		setOpcaoRetorno(leitor.nextInt());
+		setOpcaoListagemRetorno(leitor.nextLine());
 		
-		return opcaoRetorno;
+		
+		if(getOpcaoListagemRetorno() == "4")
+			System.exit(0);
+		return opcaoListagemRetorno;
 	}
 	public void limpar(){
 		System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 		System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 		System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 	}
-	
-	
-	
-	public int getOpcao() {
+
+	public String getOpcao() {
 		return opcao;
 	}
-	
 
-	public void setOpcao(int opcao) {
+	public void setOpcao(String opcao) {
 		this.opcao = opcao;
 	}
 
-	public int getOpcaoRetorno() {
+	public String getOpcaoRetorno() {
 		return opcaoRetorno;
 	}
 
-	public void setOpcaoRetorno(int opcaoRetorno) {
+	public void setOpcaoRetorno(String opcaoRetorno) {
 		this.opcaoRetorno = opcaoRetorno;
 	}
 
-	public int getOpcaoListagem() {
+	public String getOpcaoListagem() {
 		return opcaoListagem;
 	}
 
-	public void setOpcaoListagem(int opListagem) {
-		this.opcaoListagem = opListagem;
+	public void setOpcaoListagem(String opcaoListagem) {
+		this.opcaoListagem = opcaoListagem;
 	}
 
+	public String getOpcaoListagemRetorno() {
+		return opcaoListagemRetorno;
+	}
+
+	public void setOpcaoListagemRetorno(String opcaoListagemRetorno) {
+		this.opcaoListagemRetorno = opcaoListagemRetorno;
+	}
 	
+	
+	
+
 }

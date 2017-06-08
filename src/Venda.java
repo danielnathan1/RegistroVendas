@@ -1,4 +1,6 @@
 import java.awt.List;
+
+import java.io.FileNotFoundException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -7,9 +9,7 @@ import java.util.Scanner;
 
 public class Venda implements Serializable{
 	
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	
 	public Produto produto = new Produto();
@@ -33,25 +33,44 @@ public class Venda implements Serializable{
 		
 		Scanner leitor = new Scanner(System.in);
 		Scanner teste = new Scanner(System.in);
+		Scanner teste3 = new Scanner(System.in);
 	
-		int x=0;
+		int x= 0;
 		System.out.println("----------------------------------------------------------------------");
 		System.out.println("\nDIGITE O ID DO VENDEDOR: ");
 		venda.setVendedor((Vendedor) persist.lerObjeto("vendedores/" + leitor.nextLine()));
+		while(venda.getVendedor() == null){
+			if(venda.getVendedor() == null){
+				System.out.println("----------------------------------------------------------------------");
+				System.out.println("\nDIGITE O ID DO VENDEDOR: ");
+				venda.setVendedor((Vendedor) persist.lerObjeto("vendedores/" + leitor.nextLine()));
+			}
+		}
 		
 		
 		while(x==0){
 			
-		//valor final a se pagar	
+			//PEGA PRODUTO
+			System.out.println("----------------------------------------------------------------------");
 			System.out.println("\nDIGITE O CODIGO DO PRODUTO: ");
 			venda.produto = ((Produto) persist.lerObjeto("produtos/" + leitor.nextLine()));
+			while(venda.produto == null){
+				if(venda.produto==null){
+					System.out.println("----------------------------------------------------------------------");
+					System.out.println("\nDIGITE O CODIGO DO PRODUTO: ");
+					venda.produto = ((Produto) persist.lerObjeto("produtos/" + leitor.nextLine()));
+				}
+			}
 			System.out.println("\nDIGITE A QUANTIDADE DE ITENS(no maximo 2147483647):");
+			
 			try{
 			venda.quantidadeItens = teste.nextInt();
 			}catch (InputMismatchException e) {
-				System.out.println("ERRO: O valor informado e invalido\nO PROGRAMA SERA ENCERRADO");
-				System.exit(0);
+				venda.quantidadeItens = 1;
+				System.out.println("ERRO: O valor informado e invalido!");
+				System.out.println("Quantidade mudada para padrao, que e 1!");
 			}
+				
 			if(venda.quantidadeItens < 0){
 				venda.quantidadeItens *= -1;
 			}
@@ -65,13 +84,14 @@ public class Venda implements Serializable{
 			
 			System.out.println("\n\n\n[0] SE DESEJA ADICIONAR MAIS ALGUM PRODUTO, QUALQUER TECLA PARA SAIR: ");
 			try{
-			x = teste.nextInt();
+			x = teste3.nextInt();
 			}catch (InputMismatchException e) {
-				System.out.println("ERRO: Valor informado Invalido\nO PROGRAMA SERA ENCERRADO");
-				System.exit(0);
+				System.out.println("ERRO: Valor informado Invalido");
+				x= 1;
+				
 			}
 		}
-
+	
 		return venda;
 	}
 	public void efetuarDesconto(float porcentagem){

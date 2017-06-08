@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class Persist {
 	
 	
-	public void salvar(Serializable serializable,String nome){
+	public void salvarObjeto(Serializable serializable,String nome){
 		
 		
 		try {
@@ -21,8 +21,7 @@ public class Persist {
 			oos.writeObject(serializable);
 			oos.close();
 			fos.close();
-		} catch (FileNotFoundException e) {
-			
+		} catch (FileNotFoundException e) {	
 			System.out.println("ERRO: Arquivo nao encontrado!");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -33,12 +32,12 @@ public class Persist {
 	}
 	
 	
-	public Object lerObjeto(String i){
+	public Object lerObjeto(String a){
 		
 		
 		try {
 			
-			FileInputStream fis = new FileInputStream(i);
+			FileInputStream fis = new FileInputStream(a);
 			ObjectInputStream oos = new ObjectInputStream(fis);
 			Object objeto = oos.readObject();
 			oos.close();
@@ -48,8 +47,7 @@ public class Persist {
 			
 		} catch (FileNotFoundException e) {
 			System.out.println("ERRO: O Arquivo Nao foi Encontrado");
-			System.out.println("O PROGRAMA SERA ENCERRADO");
-			System.exit(0);
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -60,23 +58,6 @@ public class Persist {
 			
 		return null;
 	}
-	public void salvarVenda(Serializable serializable,String nome){
-		
-		
-		try {
-			
-			FileOutputStream fos = new FileOutputStream(nome);
-			ObjectOutputStream oos = new ObjectOutputStream(fos);
-			oos.writeObject(serializable);
-			oos.close();
-			fos.close();
-		} catch (FileNotFoundException e) {
-			
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+
 	
 }

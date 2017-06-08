@@ -43,19 +43,22 @@ public class Produto implements Serializable {
 			System.out.println("Erro: O valor informado é invalido");
 			pro.setValorVenda(0);
 		}finally {
-			System.out.println("sempre executanto");
+			System.out.println("");
 		}
 		
 	
-		System.out.println("\nDESCONTO [1] SE ESTIVER, [2] SE NÃO ESTIVER:");
+		System.out.println("\nDESCONTO [1] SE ESTIVER, [QUALQUER TECLA] SE NÃO ESTIVER:");
 		//x , variavel auxiliar para facilitar no boleean
+		try{
 		int x = leitor.nextInt();
 		if(x == 1)
 			pro.setPromocao(true);
-		else if(x == 2)
-			pro.setPromocao(false);
 		else
-			System.out.println("O Valor está incorreto");
+			pro.setPromocao(false);
+		}catch (InputMismatchException e) {
+			pro.setPromocao(false);
+		}
+			
 			
 		return pro;
 	}
