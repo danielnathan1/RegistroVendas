@@ -24,46 +24,48 @@ public class UsandoVenda {
 		
 		
 	
-		while(menu.getOpcao()!= "4"){
+		while(menu.getOpcao()!= "5"){
 			menu.limpar();
 			menu.menuPrincipal();
-			menu.setOpcaoRetorno("2") ;
+			menu.setOpcaoRetorno(2) ;
 			//menu.limpar();
 			switch (menu.getOpcao()) {
 			case "1":
 				//EFETUAR VENDA
 				
-				while(menu.getOpcaoRetorno()== "2"){
+				while(menu.getOpcaoRetorno()== 2){
 					menu.limpar();
 					venda.registroVenda(venda);
 					venda.setHoras(gerarhora.gerador());
 					venda.mostrarVenda(venda);
 					persist.salvarObjeto(venda,(String)"vendas/"+venda.horas);
-					menu.setOpcaoRetorno(menu.menuRetorno());
-				
+					menu.menuRetorno();
+					
 				}
 				break;
 				
 			case "2":
 				
 				//controle de retorno ou saida
-				while(menu.getOpcaoRetorno()=="2"){
+				while(menu.getOpcaoRetorno()==2){
 					//
 					menu.limpar();
 					vendedor.registrarVendedor(vendedor);
 					persist.salvarObjeto(vendedor, "vendedores/"+ vendedor.getId());
 					vendedor.mostrarVendedor(vendedor);
-					menu.setOpcaoRetorno(menu.menuRetorno());
-				}
+					menu.menuRetorno();
+					
+					}
 			
 				
 				break;
+	
 			/*
 			 * Registra, Salva e Mostra um produto
 			 */
 			case "3":
 				//controle para o retorno  de menu
-				while(menu.getOpcaoRetorno()=="2"){
+				while(menu.getOpcaoRetorno()==2){
 					
 					//limpar a tela
 					menu.limpar();
@@ -75,20 +77,19 @@ public class UsandoVenda {
 					produto.mostraProduto(produto);
 					//menu de saida ou retorno
 					menu.menuRetorno();
-					
 				}
 				
 				break;
 			//LISTAGEM
 			case "4":
-				while(menu.getOpcaoListagem()!="4"){
+				while(menu.getOpcaoListagem()!="5"){
 					menu.menuListagem();
 					//switch para controlar oque ira ser exibido
 					
 					switch (menu.getOpcaoListagem()){
 					
 					case "1":
-						while(menu.getOpcaoListagemRetorno() == "2"){
+						while(menu.getOpcaoListagemRetorno() == 2){
 							System.out.println("----------------------------------------------------------------------");
 							System.out.println("DIGITE O CODIGO DO PRODUTO:");
 							produto = (Produto) persist.lerObjeto("produtos/" + leitor.nextLine());
@@ -106,7 +107,7 @@ public class UsandoVenda {
 						break;
 					
 					case "2":
-						while(menu.getOpcaoListagemRetorno() == "2"){
+						while(menu.getOpcaoListagemRetorno() == 2){
 							System.out.println("----------------------------------------------------------------------");
 							System.out.println("DIGITE O ID DO VENDEDOR:");
 							vendedor = (Vendedor) persist.lerObjeto("vendedores/" + leitor.nextLine());
@@ -124,7 +125,7 @@ public class UsandoVenda {
 						break;
 						
 					case "3":
-						while(menu.getOpcaoListagemRetorno() == "2"){
+						while(menu.getOpcaoListagemRetorno() == 2){
 							System.out.println("----------------------------------------------------------------------");
 							System.out.println("DIGITE A HORA/MINUTO/SEGUNDO DA VENDA SEM [:]: ");
 							venda = (Venda) persist.lerObjeto("vendas/" + leitor.nextLine());
@@ -147,20 +148,12 @@ public class UsandoVenda {
 						break;
 						
 					default:
-						//tratamento para entrada de dados invalidas
-						try{
-						System.out.println("VALOR INFORMADO INVALIDO\nDIGITE UM VALOR VALIDO:");
-						menu.setOpcaoListagem(leitor.nextLine());
-						}catch (InputMismatchException e) {
-							System.out.println("\nERRO: Valor Informado invalido");
-						}finally {
-							
-						}
+						System.out.println("VALOR INFORMADO INVALIDO");
+						break;
+	
 					}
-					menu.menuRetornoListagem();
-					
 				}
-				break;
+					
 				
 			//SAIR
 			case "5":

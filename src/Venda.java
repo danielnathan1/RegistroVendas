@@ -168,7 +168,7 @@ public class Venda implements Serializable{
 		System.out.println("\n\n\nVENDEDOR:"+ venda.vendedor.getNome() + "\t\tCOMISSAO: RS" + venda.valorComissaoFinal + "\tHORA DA VENDA: " + venda.horas);
 		
 		
-		try { Thread.sleep (3000); } catch (InterruptedException ex) {}
+		try { Thread.sleep (1000); } catch (InterruptedException ex) {}
 		
 	}
 	
