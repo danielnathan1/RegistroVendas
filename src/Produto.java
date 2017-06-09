@@ -40,7 +40,7 @@ public class Produto implements Serializable {
 		System.out.println("\nVALOR DO CUSTO: ");
 		pro.setValorCusto(leitor.nextFloat());
 		}catch (InputMismatchException e) {
-			System.out.println("Erro: O valor informado é invalido");
+			System.out.println("Erro: O valor informado é invalido\nO produto terar como valor 0 ate que seja atualizado!");
 			pro.setValorVenda(0);
 		}finally {
 			System.out.println("");

@@ -40,6 +40,7 @@ public class Menu {
 			setOpcaoRetorno(1);
 			
 		}
+		
 		if(getOpcaoRetorno()==4){
 			System.exit(0);
 		}
